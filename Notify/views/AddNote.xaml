@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Notify.views.AddNote"
+             Title="AddNote">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Border Stroke="#2B0B98"
+                StrokeShape="RoundRectangle 10,10,10,10"
+                Padding="10,0,0,10"
+            Grid.Row="0"  VerticalOptions="Fill" HorizontalOptions="Fill">
+            <Editor FontSize="20" Placeholder="Добавьте текст"  AutoSize="TextChanges" TextChanged="ontextChanged" x:Name="TextInfo"/>
+        </Border>
+        <HorizontalStackLayout Grid.Row="1" Spacing="10">
+            <DatePicker Format="d" FontSize="20" TextColor="#2B0B98" Margin="2,0,0,1"  DateSelected="onDateSelected" x:Name="datePicker">
+                <DatePicker.MinimumDate>1/01/2023</DatePicker.MinimumDate>
+                <DatePicker.MaximumDate>1/01/2024</DatePicker.MaximumDate>
+            </DatePicker>
+            <TimePicker  FontSize="20" TextColor="#2B0B98" PropertyChanged="onTimePicker" x:Name="timePicker"/>
+        </HorizontalStackLayout>
+        <Button Text="Новая запись" Grid.Row="2" HorizontalOptions="Center" Clicked="addNewNote"/>
+    </Grid>
+
+</ContentPage>

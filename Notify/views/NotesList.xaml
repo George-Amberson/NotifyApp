@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Notify.views.NotesList"
+             Title="NotesList">
+    <Shell.TitleView>
+        <Grid ColumnSpacing="60" Padding="10,10,10,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Text="Notes" FontSize="20" FontAttributes="Bold" TextColor="White"  VerticalOptions="Center" HorizontalOptions="Start"  Grid.Column="0"/>
+            <Border Stroke="White"
+                    BackgroundColor="#512BD4"
+                StrokeShape="RoundRectangle 10,10,10,10"
+                Padding="5,0,0,0"
+                VerticalOptions="Center" HorizontalOptions="Fill" Grid.Column="1">
+                <Entry Placeholder="Search.." PlaceholderColor="White" TextColor="White" FontSize="13" TextChanged="onSearch"/>
+            </Border>
+        </Grid>
+    </Shell.TitleView>
+    <VerticalStackLayout Padding="25">
+        <Label Text="What you need to do..." HorizontalOptions="Center" FontAttributes="Italic" FontSize="20" TextColor="#2B0B98" Margin="0,0,0,20"/>
+        <CollectionView x:Name="collectionView"
+                ItemsSource="{Binding Notes}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem 
+                                   IconImageSource="delete.png"
+                                   BackgroundColor="White"
+                                   Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DeleteCommand}"
+                                   CommandParameter="{Binding}" />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <VerticalStackLayout BackgroundColor="White"
+                      Padding="10">
+                            <Label Text="{Binding textInfo}" FontSize="18" TextColor="#2B0B98" />
+                            <Label Text="{Binding dateAndTime}" FontSize="14" TextColor="LightGrey" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
